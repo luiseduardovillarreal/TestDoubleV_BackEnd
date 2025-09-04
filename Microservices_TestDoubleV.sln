@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Movement", "Movement", "{DE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movement.Domain", "Movement\Movement.Domain\Movement.Domain.csproj", "{16ADDAF5-985F-2785-48A3-4FC0ECEC5528}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movement.Infrastructure", "Movement\Movement.Infrastructure\Movement.Infrastructure.csproj", "{892904DB-C82A-5404-AD39-B2F5B8D73A17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
