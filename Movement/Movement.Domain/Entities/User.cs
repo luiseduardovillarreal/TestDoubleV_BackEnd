@@ -58,5 +58,7 @@ public partial class User
 
     public virtual ICollection<User_Rol> Users_Rols { get; } = new List<User_Rol>();
 
-    public virtual ICollection<Debt> Debts { get; } = new List<Debt>();
+    public virtual ICollection<Debt> DebtsDebtor { get; } = new List<Debt>();
+
+    public virtual ICollection<Debt> DebtsCreditor { get; } = new List<Debt>();
 }

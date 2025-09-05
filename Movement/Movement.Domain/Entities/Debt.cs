@@ -13,12 +13,12 @@ public partial class Debt
     [Comment(Constants.Entities.CommonComents.COMMENTS_ON_PROPERTIES_ID)]
     public Guid Id { get; set; }
 
-    [ForeignKey(Constants.Entities.ForeignsKeys.FOREIGN_KEY_USER)]
+    [ForeignKey(Constants.Entities.ForeignsKeys.FOREIGN_KEY_USER_DEBTOR)]
     [Column(Constants.Entities.CommonProperties.ID_USER_DEBTOR, Order = 2)]
     [Comment(Constants.Entities.CommonComents.COMMENTS_ON_PROPERTIES_ID_USER)]
     public Guid IdUserDebtor { get; set; }
 
-    [ForeignKey(Constants.Entities.ForeignsKeys.FOREIGN_KEY_USER)]
+    [ForeignKey(Constants.Entities.ForeignsKeys.FOREIGN_KEY_USER_CREDITOR)]
     [Column(Constants.Entities.CommonProperties.ID_USER_CREDITOR, Order = 3)]
     [Comment(Constants.Entities.CommonComents.COMMENTS_ON_PROPERTIES_ID_USER)]
     public Guid IdUserCreditor { get; set; }
@@ -45,7 +45,9 @@ public partial class Debt
     [Comment(Constants.Entities.CommonComents.COMMENTS_ON_PROPERTIES_IS_ACTIVE)]
     public bool IsActive { get; set; }
 
-    public virtual User User { get; set; } = null!;
+    public virtual User UserDebtor { get; set; } = null!;
+
+    public virtual User UserCreditor { get; set; } = null!;
 
     public virtual ICollection<DebtMovement> DebtsMovements { get; } 
         = new List<DebtMovement>();

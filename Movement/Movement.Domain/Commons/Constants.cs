@@ -72,6 +72,8 @@ internal static class Constants
         {
             internal const string FOREIGN_KEY_ROL = "Rol";
             internal const string FOREIGN_KEY_USER = "User";
+            internal const string FOREIGN_KEY_USER_DEBTOR = "UserDebtor";
+            internal const string FOREIGN_KEY_USER_CREDITOR = "UserCreditor";
             internal const string FOREIGN_KEY_PROFILE = "Profile";
             internal const string FOREIGN_KEY_MODULE = "Module";
             internal const string FOREIGN_KEY_SUB_MODULE = "SubModule";
