@@ -35,15 +35,15 @@ public partial class Debt
 
     [Column(Constants.Entities.CommonProperties.CREATE_AT, Order = 6)]
     [Comment(Constants.Entities.CommonComents.COMMENTS_ON_PROPERTIES_CREATE_AT)]
-    public DateTime CreateAt { get; set; }
+    public DateTime CreateAt { get; set; } = DateTime.Now;
 
     [Column(Constants.Entities.CommonProperties.UPDATE_AT, Order = 7)]
     [Comment(Constants.Entities.CommonComents.COMMENTS_ON_PROPERTIES_UPDATE_AT)]
-    public DateTime? UpdateAt { get; set; }
+    public DateTime? UpdateAt { get; set; } = null;
 
     [Column(Constants.Entities.CommonProperties.IS_ACTIVE, Order = 8)]
     [Comment(Constants.Entities.CommonComents.COMMENTS_ON_PROPERTIES_IS_ACTIVE)]
-    public bool IsActive { get; set; }
+    public bool IsActive { get; set; } = true;
 
     public virtual User UserDebtor { get; set; } = null!;
 

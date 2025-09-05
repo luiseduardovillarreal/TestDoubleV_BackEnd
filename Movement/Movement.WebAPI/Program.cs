@@ -1,9 +1,12 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Movement.Domain.Contracts;
 using Movement.Infrastructure.Base;
 using Movement.Infrastructure.Persistence.Context;
 using Movement.Infrastructure.Persistence.Contracts;
 using Movement.WebAPI.Commons;
+using Movement.WebAPI.ConfigMap;
+using Movement.WebAPI.Controllers.Deb_t;
 using System.Reflection;
 
 #pragma warning disable CS8600
@@ -21,6 +24,13 @@ string connStr = Constants.Program.CONNECTION_STRINGS;
 builder.Services.AddDbContext<MovementDbContext>(dbContextOptions => dbContextOptions
     .UseNpgsql(builder.Configuration.GetConnectionString(defConn)
         ?? builder.Configuration.GetConnectionString($"{connStr}:{defConn}")));
+
+//[LV] Configuración de AutoMapper...
+MapperConfiguration mapperConfiguration = new(config => {
+    config.AddProfile(new AutoMapperConfigurations());
+});
+IMapper mapper = mapperConfiguration.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 //[LV] builder.Services.AddScoped<SurveyDbContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -79,6 +89,16 @@ app.UseSwaggerUI();
 
 //[LV] Uso del  Hub como herramienta Real Time.
 app.UseRouting();
+
+//[LV] Configuración de los recursos del API (Minimals)
+app.CreateDebtEndPoint();
+app.DeleteDebtEndPoint();
+app.GetAllDebtsByUserEndPoint();
+app.GetAllDebtsEndPoint();
+app.GetAnyDebtActiveByIdEndPoint();
+app.GetAnyDebtByIdEndPoint();
+app.PayDebtEndPoint();
+app.UpdateDebtEndPoint();
 
 // Configure the HTTP request pipeline.
 app.MapControllers();
