@@ -10,9 +10,9 @@ public static class DeleteDebtController
     public static void DeleteDebtEndPoint(this WebApplication app)
     {
         app.MapDelete(Constants.Controllers.DeleteDebtEndPoint.DEBT_DELETE,
-            async (IMediator mediator, DeleteDebtRequestDTO request) =>
+            async (IMediator mediator, Guid IdDebt) =>
             {
-                return await mediator.Send(request)
+                return await mediator.Send(new DeleteDebtRequestDTO(IdDebt))
                     ?? new CommonResponse<string>();
             })
         .AddCommonResponse<CommonResponse<string>>()

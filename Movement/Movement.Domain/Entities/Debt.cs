@@ -51,4 +51,25 @@ public partial class Debt
 
     public virtual ICollection<DebtMovement> DebtsMovements { get; } 
         = new List<DebtMovement>();
+
+    public virtual void Inactivate()
+        => this.IsActive = false;
+
+    public virtual bool ValidateNewAmountAboutDifference(double newAmount)
+        => this.Difference >= newAmount;
+
+    public virtual void ProcessNewAmountAndAdjustDifference(double newAmount)
+    {
+        this.Amount = newAmount;
+        this.Difference -= newAmount;
+    }
+
+    public virtual void AddPay(double newPay)
+    {
+        this.UpdateAt = DateTime.Now;
+        DebtsMovements.Add(new()
+        {
+            Amount = newPay
+        });
+    }
 }

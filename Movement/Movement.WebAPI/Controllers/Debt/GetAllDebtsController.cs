@@ -12,7 +12,7 @@ public static class GetAllDebtsController
         app.MapGet(Constants.Controllers.GetAllDebtsEndPoint.DEBT_GET_ALL,
             async (IMediator mediator) =>
             {
-                return await mediator.Send(new GetAllDebtSRequestDTO())
+                return await mediator.Send(new GetAllDebtsRequestDTO())
                     ?? new CommonResponse<GetAllDebtsResponseDTO>();
             })
         .AddCommonResponse<CommonResponse<GetAllDebtsResponseDTO>>()

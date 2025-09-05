@@ -8,7 +8,6 @@ using System.Linq.Expressions;
 namespace Movement.Infrastructure.Repositories;
 
 #pragma warning disable CS8603
-#pragma warning disable CS8604
 
 public class DebtRepository(IMovementDbContext dbContext) : IDebtRepository<Debt>
 {
@@ -21,15 +20,28 @@ public class DebtRepository(IMovementDbContext dbContext) : IDebtRepository<Debt
     public void Delete(Debt entity)
         => _dbSet.Update(entity);
 
+    public async Task<Debt?> FindAnyByIdAsync(Guid idDebt)
+        => await _dbSet.Include(d => d.UserDebtor)
+            .Include(d => d.UserCreditor)
+            .Include(d => d.DebtsMovements)
+            .FirstOrDefaultAsync(d => d.Id == idDebt);
+
     public async Task<IEnumerable<Debt>> FindAllAsync()
-        => await _dbSet.ToListAsync();
+        => await _dbSet.Include(d => d.UserDebtor)
+            .Include(d => d.UserCreditor)
+            .Include(d => d.DebtsMovements)
+            .ToListAsync();
+
+    public async Task<IEnumerable<Debt>> FindAllByUserDebtorAsync(Guid idUserDebtor)
+        => await _dbSet.Include(d => d.UserDebtor)
+            .Include(d => d.UserCreditor)
+            .Include(d => d.DebtsMovements)
+            .Where(d => d.IdUserDebtor.Equals(idUserDebtor))
+            .ToListAsync();
 
     public async Task<Debt> FindFirstOrDefaultAsync(Expression<Func<Debt, bool>> predicate)
         => await _dbSet.FirstOrDefaultAsync(predicate);
 
     public void Update(Debt entity)
         => _dbSet.Update(entity);
-
-    public IQueryable<Debt> Where(Expression<Func<Debt, bool>> predicate)
-        => _dbSet.Where(predicate);
 }

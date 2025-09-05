@@ -88,9 +88,9 @@ internal static class Constants
         internal const string CORS_POLICY = "CorsPolicy";
         internal const string IP_AUTHORIZED = "IP_AUTHORIZED";
         internal const string V1 = "v1";
-        internal const string TITLE = "Survey API";
+        internal const string TITLE = "Movements API";
         internal const string DESCRIPTION = "API encargada del core del módulo" +
-            "de encuestras.";
+            "de deudas.";
         internal const string TERMS_OF_SERVICE = "https://google.com.co";
         internal const string CONTACT_NAME = "Nombre contacto";
         internal const string CONTACT_URL = "https://google.com.co";
