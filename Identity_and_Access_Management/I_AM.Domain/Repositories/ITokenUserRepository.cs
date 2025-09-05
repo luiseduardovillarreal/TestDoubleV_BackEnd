@@ -1,6 +1,9 @@
-﻿namespace I_AM.Domain.Repositories;
+﻿using System.Linq.Expressions;
 
-public interface ITokenUserRepository
+namespace I_AM.Domain.Repositories;
+
+public interface ITokenUserRepository<T> where T : class
 {
-    
+    Task AddAsync(T entity);
+    Task<T> FindFirstOrDefaultAsync(Expression<Func<T, bool>> predicate);
 }

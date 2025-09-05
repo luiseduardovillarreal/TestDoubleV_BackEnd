@@ -19,8 +19,8 @@ public class AuthService(IConfiguration configuration) : IAuthService
     public string GetToken(Guid uuId)
         => GenerateToken(uuId);
 
-    public string GetTokenInquest()
-        => GenerateTokenInquest();
+    public string GetTokenUser()
+        => GenerateTokenUser();
 
     public string GetTokenForgotPassword()
         => GenerateTokenForgotPassword();
@@ -58,7 +58,7 @@ public class AuthService(IConfiguration configuration) : IAuthService
         return tokenHandler.WriteToken(token);
     }
 
-    private string GenerateTokenInquest()
+    private string GenerateTokenUser()
     {
         var byteArray = new byte[64];
         var token = string.Empty;

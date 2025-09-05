@@ -16,8 +16,6 @@ internal static class Constants
                 "como ¿Está activo? Quiere decir que si el valor es true, es por que si está activo " +
                 "el registro, o sea que el registro no está eliminado, pero si el valor es false, " +
                 "quiere decir que el registro no está activo, o sea, está eliminado.";
-            internal const string COMMENTS_ON_PROPERTIES_ID_INQUEST = "Llave foránea de referencia " +
-                "a la tabla TblSurveyInquest.";
             internal const string COMMENTS_ON_PROPERTIES_ID_USER = "Llave foránea de referencia " +
                 "a la tabla TblUser.";
             internal const string COMMENTS_ON_PROPERTIES_ID_PROFILE = "Llave foránea de referencia " +
@@ -33,7 +31,6 @@ internal static class Constants
         internal static class CommonProperties
         {
             internal const string ID = "Id";
-            internal const string ID_INQUEST = "IdInquest";
             internal const string CREATE_AT = "CreateAt";
             internal const string UPDATE_AT = "UpdateAt";
             internal const string IS_ACTIVE = "IsActive";
@@ -46,16 +43,11 @@ internal static class Constants
 
         internal static class ForeignsKeys
         {
-            internal const string FOREIGN_KEY_INQUEST = "Inquest";
-            internal const string FOREIGN_KEY_TYPE_QUESTION = "TypeQuestion";
-            internal const string FOREIGN_KEY_QUESTION = "Question";
-            internal const string FOREIGN_KEY_RESPONSE_CLOSED = "ResponseClosed";
             internal const string FOREIGN_KEY_ROL = "Rol";
             internal const string FOREIGN_KEY_USER = "User";
             internal const string FOREIGN_KEY_PROFILE = "Profile";
             internal const string FOREIGN_KEY_MODULE = "Module";
             internal const string FOREIGN_KEY_SUB_MODULE = "SubModule";
-            internal const string FOREIGN_KEY_ACTION = "Action";
         }
 
         internal static class Module
@@ -113,26 +105,6 @@ internal static class Constants
             internal const string COMMENTS_ON_ROUTER_LINK = "Ruta de apertura del submódulo al " +
                 "hacer clic.";
         }       
-
-        internal static class TokenInquest
-        {
-            internal const string TBL_TOKEN_INQUEST = "TblTokenInquest";
-            internal const string TOKEN = "Token";
-            internal const string THIS_UNIQUE_RESPONSE = "ThisUniqueResponse";
-            internal const string THIS_OPEN = "ThisOpen";
-            internal const string COMMENTS_ON_TOKEN = "Token que manejará la seguridad " +
-                "de muestra y acceso a la encuesta (Inquest), mediante éste Token " +
-                "y en unión a otras propiedades, se da acceso a mostrar la encuesta " +
-                "u ocultarla.";
-            internal const string COMMENTS_ON_THIS_UNIQUE_RESPONSE = "Esta propiedad " +
-                "traducida como ¿Esto es única respuesta? Quiere decir que si el valor es " +
-                "true, es por que el token del registro relacionado con una encuesta, sólo " +
-                "tiene un uso válido por usuario, no expira el token sino sólo para quién " +
-                "respondió la encuesta.";
-            internal const string COMMENTS_ON_THIS_OPEN = "Esta propiedad traducida " +
-                "como ¿Esto es abierto? Quiere decir que si el valor es true, es por que el " +
-                "token del registro relacionado con una encuesta, nunca expirará.";
-        }
 
         internal static class TokenUser
         {

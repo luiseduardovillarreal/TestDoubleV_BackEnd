@@ -18,16 +18,6 @@ internal static class Constants
                 "realiza la petición del inicio de sesión, verifica todas la validaciones " +
                 "y le genera un token de seguirdad.";
         }
-
-        internal static class ValidateTokenInquestEndPoint
-        {
-            internal const string TOKEN_VALIDATE_TOKEN_INQUEST = "/token/validate-token-inquest";
-            internal const string SUMMARY = "Verifica la autenticidad del token de una " +
-                "encuesta.";
-            internal const string DESCRIPTION = "Recibe un token de una encuesta, valida " +
-                "la autenticidad de éste, se trae la data del token e id de la encuesta " +
-                "y responde con esta propiedad sumado a un booleano.";
-        }
     }
 
     internal static class Listener
@@ -38,7 +28,7 @@ internal static class Constants
             internal const string PORT_RABBIT_MQ = "ServiceBus:PortRabbitMQ";            
             internal const string USER = "ServiceBus:User";
             internal const string PASSWORD = "ServiceBus:Password";
-            internal const string QUEUE_TOKEN_INQUEST = "ServiceBus:QueueTokenInquest";
+            internal const string QUEUE_TOKEN_USER = "ServiceBus:QueueTokenUser";
         }
     }
 

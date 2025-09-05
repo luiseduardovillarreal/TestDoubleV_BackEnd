@@ -24,4 +24,8 @@
     <ProjectReference Include="..\I_AM.Infrastructure\I_AM.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Token\" />
+  </ItemGroup>
+
 </Project>

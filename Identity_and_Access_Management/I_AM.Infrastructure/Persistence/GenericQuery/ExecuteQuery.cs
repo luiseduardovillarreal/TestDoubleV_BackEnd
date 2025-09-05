@@ -2,7 +2,7 @@
 using System.Data;
 using System.Reflection.Emit;
 using System.Reflection;
-using Microsoft.Data.SqlClient;
+using Npgsql;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using I_AM.Infrastructure.Commons;
@@ -14,11 +14,11 @@ namespace I_AM.Infrastructure.Persistence.GenericQuery;
 #pragma warning disable CS8600
 #pragma warning disable CS8602
 
-public class ExecuteQuery(ISurveyDbContext dbContext) : IExecuteQuery
+public class ExecuteQuery(IMovementDbContext dbContext) : IExecuteQuery
 {
-    private readonly ISurveyDbContext _dbContext = dbContext;
+    private readonly IMovementDbContext _dbContext = dbContext;
 
-    public async Task<string> GetQuery(string storedProcedure, List<SqlParameter> parameters)
+    public async Task<string> GetQuery(string storedProcedure, List<NpgsqlParameter> parameters)
     {
         DataTable dt = new();
         ResultQuery resultQuery = new();

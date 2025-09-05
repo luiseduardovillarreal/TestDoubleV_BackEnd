@@ -6,7 +6,7 @@ internal static class Constants
     {
         internal const string LOGIN_FAILED = "No se pudo iniciar la sesión.";
         internal const string TOKEN_INVALID = "Token inválido, verifique su " +
-            "link de encuesta o contáctese con el administrador de la plataforma.";
+            "link o contáctese con el administrador de la plataforma.";
     }
 
     internal static class LogIn
@@ -30,11 +30,11 @@ internal static class Constants
         }
     }
 
-    internal static class TokenInquest
+    internal static class TokenUser
     {
         internal static class Queries
         {
-            internal static class ValidateTokenInquestQuery
+            internal static class ValidateTokenUserQuery
             {
                 internal const string NOT_FOUND_TOKEN
                     = "No se encontró el token en la base de datos.";

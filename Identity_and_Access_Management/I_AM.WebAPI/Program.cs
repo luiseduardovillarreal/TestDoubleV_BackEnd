@@ -5,9 +5,7 @@ using I_AM.Infrastructure.Persistence.Context;
 using I_AM.Infrastructure.Persistence.Contracts;
 using I_AM.Infrastructure.Persistence.GenericQuery;
 using I_AM.WebAPI.Commons;
-using I_AM.WebAPI.ConfigMap;
 using I_AM.WebAPI.Controllers.Login;
-using I_AM.WebAPI.Controllers.Token;
 using I_AM.WebAPI.Listener;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -24,20 +22,13 @@ builder.Services.AddMediatR(p => p.RegisterServicesFromAssemblies(appAssembly));
 //[LV] Configuración del Contexto de base de datos..
 string defConn = Constants.Program.DEFAULT_CONNECTION;
 string connStr = Constants.Program.CONNECTION_STRINGS;
-builder.Services.AddDbContext<SurveyDbContext>(dbContextOptions => dbContextOptions
-    .UseSqlServer(builder.Configuration.GetConnectionString(defConn)
+builder.Services.AddDbContext<MovementDbContext>(dbContextOptions => dbContextOptions
+    .UseNpgsql(builder.Configuration.GetConnectionString(defConn)
         ?? builder.Configuration.GetConnectionString($"{connStr}:{defConn}")));
-
-//[LV] Configuración de AutoMapper...
-MapperConfiguration mapperConfiguration = new(config => {
-    config.AddProfile(new AutoMapperConfigurations());
-});
-IMapper mapper = mapperConfiguration.CreateMapper();
-builder.Services.AddSingleton(mapper);
 
 //[LV] Inyectando dependencias...
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<ISurveyDbContext, SurveyDbContext>();
+builder.Services.AddScoped<IMovementDbContext, MovementDbContext>();
 builder.Services.AddScoped<IExecuteQuery, ExecuteQuery>();
 
 //[LV] Inyectando servicios de escucha...
@@ -89,7 +80,6 @@ app.UseSwaggerUI();
 
 //[LV] Minimals APIs...
 app.LogInEndPoint();
-app.ValidateTokenInquestEndPoint();
 
 // Configure the HTTP request pipeline.
 app.MapControllers();

@@ -3,7 +3,7 @@
 public interface IAuthService
 {
     string GetToken(Guid idUser);
-    string GetTokenInquest();
+    string GetTokenUser();
     string GetTokenForgotPassword();
     string RefreshToken(Guid idUser);
 }

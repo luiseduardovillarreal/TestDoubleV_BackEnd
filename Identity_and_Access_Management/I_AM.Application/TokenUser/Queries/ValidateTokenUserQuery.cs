@@ -1,31 +1,31 @@
 ﻿using I_AM.Application.Commons;
-using I_AM.Application.TokenInques_t.DTOs;
+using I_AM.Application.TokenUse_r.DTOs;
 using I_AM.Domain.Contracts;
 using I_AM.Domain.Entities;
 using MediatR;
 using System.Net;
 
-namespace I_AM.Application.TokenInques_t.Queries;
+namespace I_AM.Application.TokenUse_r.Queries;
 
-internal class ValidateTokenInquestQuery(IUnitOfWork unitOfWork)
-    : IRequestHandler<ValidateTokenInquestRequestDTO, CommonResponse<Guid>>
+internal class ValidateTokenUserQuery(IUnitOfWork unitOfWork)
+    : IRequestHandler<ValidateTokenUserRequestDTO, CommonResponse<Guid>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-    public async Task<CommonResponse<Guid>> Handle(ValidateTokenInquestRequestDTO request, 
+    public async Task<CommonResponse<Guid>> Handle(ValidateTokenUserRequestDTO request, 
         CancellationToken cancellationToken)
     {
         if (!string.IsNullOrEmpty(request.token))
         {
-            TokenInquest tokenInquest = await _unitOfWork.TokenInquestRepository
+            TokenUser tokenUser = await _unitOfWork.TokenUserRepository
                 .FindFirstOrDefaultAsync(tknInq => tknInq.Token.Equals(request.token));
 
-            if (tokenInquest is not null)
+            if (tokenUser is not null)
             {
                 _unitOfWork.Dispose();
                 return new()
                 {
-                    Data = tokenInquest.IdInquest,
+                    Data = tokenUser.IdUser,
                     Message = string.Empty,
                     MessageCustom = string.Empty,
                     StatusCode = HttpStatusCode.OK,
@@ -39,7 +39,7 @@ internal class ValidateTokenInquestQuery(IUnitOfWork unitOfWork)
                 Data = Guid.Empty,
                 StatusCode = HttpStatusCode.NotFound,
                 Message = Constants.CommonMessage.TOKEN_INVALID,
-                MessageCustom = Constants.TokenInquest.Queries.ValidateTokenInquestQuery.NOT_FOUND_TOKEN,
+                MessageCustom = Constants.TokenUser.Queries.ValidateTokenUserQuery.NOT_FOUND_TOKEN,
                 Succeeded = false
             };
         }
@@ -50,7 +50,7 @@ internal class ValidateTokenInquestQuery(IUnitOfWork unitOfWork)
             Data = Guid.Empty,
             StatusCode = HttpStatusCode.BadRequest,
             Message = Constants.CommonMessage.TOKEN_INVALID,
-            MessageCustom = Constants.TokenInquest.Queries.ValidateTokenInquestQuery.VERIFY_DATA,
+            MessageCustom = Constants.TokenUser.Queries.ValidateTokenUserQuery.VERIFY_DATA,
             Succeeded = false
         };
     }

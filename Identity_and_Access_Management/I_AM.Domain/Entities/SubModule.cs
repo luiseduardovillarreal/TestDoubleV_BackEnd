@@ -39,7 +39,7 @@ public partial class SubModule
     public DateTime CreateAt { get; set; }
 
     [Column(Constants.Entities.CommonProperties.UPDATE_AT, Order = 6)]
-    [Comment(Constants.Entities.CommonComents.COMMENTS_ON_PROPERTIES_CREATE_AT)]
+    [Comment(Constants.Entities.CommonComents.COMMENTS_ON_PROPERTIES_UPDATE_AT)]
     public DateTime? UpdateAt { get; set; }
 
     [Column(Constants.Entities.CommonProperties.IS_ACTIVE, Order = 7)]

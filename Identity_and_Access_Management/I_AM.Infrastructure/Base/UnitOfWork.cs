@@ -13,18 +13,18 @@ namespace I_AM.Infrastructure.Base;
 #pragma warning disable CS8625
 #pragma warning disable CS8618
 
-public class UnitOfWork(ISurveyDbContext dbContext, IExecuteQuery executeQuery, 
+public class UnitOfWork(IMovementDbContext dbContext, IExecuteQuery executeQuery, 
     IConfiguration configuration) : IUnitOfWork
 {
-    private ISurveyDbContext _dbContext = dbContext;
+    private IMovementDbContext _dbContext = dbContext;
     private readonly IExecuteQuery _executeQuery = executeQuery;
     private readonly IConfiguration _configuration = configuration;
-    private ITokenInquestRepository<TokenInquest> _tokenInquestRepository;
+    private ITokenUserRepository<TokenUser> _tokenUserRepository;
     private IUserRepository<User> _userRepository;
     private IAuthService _authService;
 
-    public ITokenInquestRepository<TokenInquest> TokenInquestRepository => _tokenInquestRepository
-        ?? (_tokenInquestRepository = new TokenInquestRepository(_dbContext));
+    public ITokenUserRepository<TokenUser> TokenUserRepository => _tokenUserRepository
+        ?? (_tokenUserRepository = new TokenUserRepository(_dbContext));
 
     public IUserRepository<User> UserRepository => _userRepository
         ?? (_userRepository = new UserRepository(_dbContext, _executeQuery, _configuration));
@@ -42,7 +42,7 @@ public class UnitOfWork(ISurveyDbContext dbContext, IExecuteQuery executeQuery,
     {
         if (disposing && _dbContext != null)
         {
-            ((SurveyDbContext)_dbContext).DisposeAsync();
+            ((MovementDbContext)_dbContext).DisposeAsync();
             _dbContext = null;
         }
     }

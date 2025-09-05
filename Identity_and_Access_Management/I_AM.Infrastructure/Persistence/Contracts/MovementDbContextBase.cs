@@ -2,9 +2,9 @@
 
 namespace I_AM.Infrastructure.Persistence.Contracts;
 
-public partial class SurveyDbContextBase : DbContext, ISurveyDbContext
+public partial class MovementDbContextBase : DbContext, IMovementDbContext
 {
-    public SurveyDbContextBase(DbContextOptions options)
+    public MovementDbContextBase(DbContextOptions options)
         : base(options)
     {
     }

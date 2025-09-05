@@ -12,10 +12,10 @@ namespace I_AM.Infrastructure.Repositories;
 #pragma warning disable CS8603
 #pragma warning disable CS8604
 
-public class UserRepository(ISurveyDbContext dbContext, IExecuteQuery executeQuery,
+public class UserRepository(IMovementDbContext dbContext, IExecuteQuery executeQuery,
     IConfiguration configuration) : IUserRepository<User>
 {
-    protected ISurveyDbContext _dbContext = dbContext;
+    protected IMovementDbContext _dbContext = dbContext;
     protected readonly DbSet<User> _dbSet = dbContext.Set<User>();
     private readonly IExecuteQuery _executeQuery = executeQuery;
     private readonly IConfiguration _configuration = configuration;

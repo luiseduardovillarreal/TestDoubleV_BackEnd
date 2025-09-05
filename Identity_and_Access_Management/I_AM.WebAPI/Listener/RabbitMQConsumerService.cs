@@ -1,4 +1,4 @@
-﻿using I_AM.Application.TokenInques_t.DTOs;
+﻿using I_AM.Application.TokenUse_r.DTOs;
 using MediatR;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
@@ -27,7 +27,7 @@ internal class RabbitMQConsumerService(IConfiguration configuration,
         int portRabbitMQ = int.Parse(_configuration[Constants.PORT_RABBIT_MQ]);
         string userName = _configuration[Constants.USER];
         string password = _configuration[Constants.PASSWORD];
-        string queueTokenInquest = _configuration[Constants.QUEUE_TOKEN_INQUEST];
+        string queueTokenUser = _configuration[Constants.QUEUE_TOKEN_USER];
 
         var factory = new ConnectionFactory
         {
@@ -40,7 +40,7 @@ internal class RabbitMQConsumerService(IConfiguration configuration,
         _connection = await factory.CreateConnectionAsync();
         _channel = await _connection.CreateChannelAsync();
 
-        await ListenQueue(queueTokenInquest, ProcessCreateTokenInquest);
+        await ListenQueue(queueTokenUser, ProcessCreateTokenUser);
 
         await Task.Delay(Timeout.Infinite, stoppingToken);
     }
@@ -60,14 +60,14 @@ internal class RabbitMQConsumerService(IConfiguration configuration,
         await _channel.BasicConsumeAsync(queueName, autoAck: true, consumer: consumer);
     }
 
-    private async Task ProcessCreateTokenInquest(string message)
+    private async Task ProcessCreateTokenUser(string message)
     {
         using var scope = _serviceProvider.CreateScope();
         var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
 
-        CreateTokenInquestRequestDTO request = 
-            JsonConvert.DeserializeObject<CreateTokenInquestRequestDTO>(message);
-        await mediator.Send<CreateTokenInquestRequestDTO>(request);
+        CreateTokenUserRequestDTO request = 
+            JsonConvert.DeserializeObject<CreateTokenUserRequestDTO>(message);
+        await mediator.Send<CreateTokenUserRequestDTO>(request);
         await Task.Yield();
     }
 }
