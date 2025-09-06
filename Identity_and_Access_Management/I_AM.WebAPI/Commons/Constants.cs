@@ -9,6 +9,42 @@ internal static class Constants
 
     internal static class Controllers
     {
+        internal static class ActivateUserEndPoint
+        {
+            internal const string USER_UPDATE = "/user/activate";
+            internal const string SUMMARY = "Actualiza el estado de un usuario.";
+            internal const string DESCRIPTION = "Recibe la petición de activar " +
+                "un usuario, realiza sus validaciones correspondientes y en " +
+                "caso positivo, realiza la activación.";
+        }
+
+        internal static class CreateUserEndPoint
+        {
+            internal const string USER_CREATE = "/user/create";
+            internal const string SUMMARY = "Crea un usuario.";
+            internal const string DESCRIPTION = "Recibe la petición de crear " +
+                "un usuario, realiza sus validaciones correspondientes y en " +
+                "caso positivo, realiza la insercción.";
+        }
+
+        internal static class GetAllUsersEndPoint
+        {
+            internal const string USER_GET_ALL = "/user/get-all";
+            internal const string SUMMARY = "Obtiene todos los usuarios.";
+            internal const string DESCRIPTION = "Recibe la petición de obtener " +
+                "todos los usuario, realiza sus validaciones correspondientes y " +
+                "devuelve los usuarios que existan en base de datos.";
+        }
+
+        internal static class InactivateUserEndPoint
+        {
+            internal const string USER_UPDATE = "/user/inactivate";
+            internal const string SUMMARY = "Actualiza el estado de un usuario.";
+            internal const string DESCRIPTION = "Recibe la petición de inactivar " +
+                "un usuario, realiza sus validaciones correspondientes y en " +
+                "caso positivo, realiza la inactivación.";
+        }
+
         internal static class LogInEndPoint
         {
             internal const string LOGIN_AUTH = "/login/auth";

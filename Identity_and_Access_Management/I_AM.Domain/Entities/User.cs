@@ -42,19 +42,25 @@ public partial class User
 
     [Column(Constants.Entities.CommonProperties.CREATE_AT, Order = 6)]
     [Comment(Constants.Entities.CommonComents.COMMENTS_ON_PROPERTIES_CREATE_AT)]
-    public DateTime CreateAt { get; set; }
+    public DateTime CreateAt { get; set; } = DateTime.UtcNow;
 
     [Column(Constants.Entities.CommonProperties.UPDATE_AT, Order = 7)]
     [Comment(Constants.Entities.CommonComents.COMMENTS_ON_PROPERTIES_CREATE_AT)]
-    public DateTime? UpdateAt { get; set; }
+    public DateTime? UpdateAt { get; set; } = null;
 
     [Column(Constants.Entities.CommonProperties.IS_ACTIVE, Order = 8)]
     [Comment(Constants.Entities.CommonComents.COMMENTS_ON_PROPERTIES_IS_ACTIVE)]
-    public bool IsActive { get; set; }
+    public bool IsActive { get; set; } = false;
 
     public virtual ICollection<TokenUser> TokensUsers { get; } = new List<TokenUser>();
 
     public virtual ICollection<User_Profile> Users_Profiles { get; } = new List<User_Profile>();
 
     public virtual ICollection<User_Rol> Users_Rols { get; } = new List<User_Rol>();
+
+    public virtual void Activate()
+        => this.IsActive = true;
+
+    public virtual void Inactivate()
+        => this.IsActive = false;
 }

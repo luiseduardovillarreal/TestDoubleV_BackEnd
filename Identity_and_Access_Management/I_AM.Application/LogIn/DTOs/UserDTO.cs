@@ -9,5 +9,4 @@ public class UserDTO
     public string LastNames { get; set; }
     public string Email { get; set; }
     public List<ModuleDTO> Modules { get; set; } = new();
-    public List<SubModuleDTO> SubModules { get; set; } = new();
 }

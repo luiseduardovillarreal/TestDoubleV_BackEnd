@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Movement.Application.Commons;
 using Movement.Application.Deb_t.DTOs.CommandUpdate;
 using Movement.Domain.Contracts;
@@ -31,7 +30,7 @@ internal class UpdateDebtCommand(IUnitOfWork unitOfWork)
                 {
                     debt.ProcessNewAmountAndAdjustDifference(request.Debt.Amount);
 
-                    await _unitOfWork.DebtRepository.AddAsync(debt);
+                    _unitOfWork.DebtRepository.Update(debt);
 
                     var resultCommit = await _unitOfWork.Commit(CancellationToken.None);
 

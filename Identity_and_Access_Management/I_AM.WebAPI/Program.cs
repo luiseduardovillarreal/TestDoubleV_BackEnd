@@ -6,6 +6,7 @@ using I_AM.Infrastructure.Persistence.Contracts;
 using I_AM.WebAPI.Commons;
 using I_AM.WebAPI.ConfigMap;
 using I_AM.WebAPI.Controllers.Login;
+using I_AM.WebAPI.Controllers.Use_r;
 using I_AM.WebAPI.Listener;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -85,6 +86,10 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 //[LV] Minimals APIs...
+app.ActivateUserEndPoint();
+app.CreateUserEndPoint();
+app.GetAllUsersEndPoint();
+app.InactivateUserEndPoint();
 app.LogInEndPoint();
 
 // Configure the HTTP request pipeline.

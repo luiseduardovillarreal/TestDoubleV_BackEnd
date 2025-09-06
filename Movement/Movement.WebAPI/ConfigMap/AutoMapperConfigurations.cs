@@ -1,9 +1,9 @@
 ﻿using Movement.Domain.Entities;
-using create_DebtRequestDTO = Movement.Application.Deb_t.DTOs.CommandCreate.DebtRequestDTO;
-using anyById_DebtResponseDTO = Movement.Application.Deb_t.DTOs.QueryAnyById.DebtResponseDTO;
-using allByUser_DebtResponseDTO = Movement.Application.Deb_t.DTOs.QueryAllByUser.DebtResponseDTO;
-using all_DebtResponseDTO = Movement.Application.Deb_t.DTOs.QueryAll.DebtResponseDTO;
-using anyActiveById_DebtResponseDTO = Movement.Application.Deb_t.DTOs.QueryAnyActiveById.DebtResponseDTO;
+using create_DebtRequestDTO = Movement.Application.Deb_t.DTOs.CommandCreate.DebtDTO;
+using anyById_DebtResponseDTO = Movement.Application.Deb_t.DTOs.QueryAnyById.DebtDTO;
+using allByUser_DebtResponseDTO = Movement.Application.Deb_t.DTOs.QueryAllByUser.DebtDTO;
+using all_DebtResponseDTO = Movement.Application.Deb_t.DTOs.QueryAll.DebtDTO;
+using anyActiveById_DebtResponseDTO = Movement.Application.Deb_t.DTOs.QueryAnyActiveById.DebtDTO;
 
 namespace Movement.WebAPI.ConfigMap;
 

@@ -87,7 +87,7 @@ internal class LogInQuery(IUnitOfWork unitOfWork, IMapper mapper) :
                 Data = new(new(), string.Empty),
                 StatusCode = HttpStatusCode.BadRequest,
                 Message = Constants.CommonMessage.LOGIN_FAILED,
-                MessageCustom = Constants.LogIn.Queries.LogInQuery.INVALID_EMAIL,
+                MessageCustom = Constants.CommondResponsesCustom.INVALID_EMAIL,
                 Succeeded = false
             };
         }
@@ -98,7 +98,7 @@ internal class LogInQuery(IUnitOfWork unitOfWork, IMapper mapper) :
             Data = new(new(), string.Empty),
             StatusCode = HttpStatusCode.BadRequest,
             Message = Constants.CommonMessage.LOGIN_FAILED,
-            MessageCustom = Constants.LogIn.Queries.LogInQuery.VERIFY_DATA,
+            MessageCustom = Constants.CommondResponsesCustom.VERIFY_DATA,
             Succeeded = false
         };
     }
