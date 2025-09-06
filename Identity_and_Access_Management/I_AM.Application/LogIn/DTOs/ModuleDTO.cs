@@ -2,9 +2,10 @@
 
 #pragma warning disable CS8618
 
-public class RolResponseDTO
+public class ModuleDTO 
 {
-    public decimal Code { get; set; }
+    public Guid Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
+    public string Icon { get; set; }
 }

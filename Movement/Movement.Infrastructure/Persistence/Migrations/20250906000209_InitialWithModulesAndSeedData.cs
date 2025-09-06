@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Movement.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialWithModels : Migration
+    public partial class InitialWithModulesAndSeedData : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -352,6 +352,8 @@ namespace Movement.Infrastructure.Persistence.Migrations
                 values: new object[,]
                 {
                     { new Guid("28c9b1fc-2906-4d3f-9a6a-cbcfc64c727e"), new DateTime(2025, 9, 4, 12, 0, 0, 0, DateTimeKind.Utc), new Guid("42690d34-5695-4b04-aa50-7c85ee34f18d"), new Guid("aa30317b-e63b-4ac0-bfde-1d97cdb38001") },
+                    { new Guid("5360c6c3-7bf3-436a-b107-87e767638335"), new DateTime(2025, 9, 5, 12, 0, 0, 0, DateTimeKind.Utc), new Guid("62af661b-7686-42db-ac90-8d3e801aded0"), new Guid("cd2b4165-a729-4f24-b218-c60f965cab21") },
+                    { new Guid("5886b671-948b-46b8-9c8b-8e115021f7e1"), new DateTime(2025, 9, 4, 12, 0, 0, 0, DateTimeKind.Utc), new Guid("42690d34-5695-4b04-aa50-7c85ee34f18d"), new Guid("cd2b4165-a729-4f24-b218-c60f965cab21") },
                     { new Guid("db9a7883-2dee-4f56-a75e-4b59345b64cd"), new DateTime(2025, 9, 5, 12, 0, 0, 0, DateTimeKind.Utc), new Guid("0f96c167-ebcb-4083-a3e1-60332ca21827"), new Guid("aa30317b-e63b-4ac0-bfde-1d97cdb38001") }
                 });
 
@@ -360,7 +362,7 @@ namespace Movement.Infrastructure.Persistence.Migrations
                 columns: new[] { "Id", "CreateAt", "IdProfile", "IdSubModule" },
                 values: new object[,]
                 {
-                    { new Guid("0b25fea0-a5af-405f-a9ec-73e3609d8630"), new DateTime(2025, 6, 6, 12, 0, 0, 0, DateTimeKind.Utc), new Guid("aa30317b-e63b-4ac0-bfde-1d97cdb38001"), new Guid("1d53feef-eb1a-4b4e-bd7b-163341b8e2fd") },
+                    { new Guid("0b25fea0-a5af-405f-a9ec-73e3609d8630"), new DateTime(2025, 6, 6, 12, 0, 0, 0, DateTimeKind.Utc), new Guid("cd2b4165-a729-4f24-b218-c60f965cab21"), new Guid("1d53feef-eb1a-4b4e-bd7b-163341b8e2fd") },
                     { new Guid("7455cbac-dbfa-4b70-a093-03529da55eac"), new DateTime(2025, 6, 6, 12, 1, 0, 0, DateTimeKind.Utc), new Guid("aa30317b-e63b-4ac0-bfde-1d97cdb38001"), new Guid("2e4ab52e-95f0-4bc8-9273-1083305a5dd1") },
                     { new Guid("7e2be985-11ce-4bba-8ed2-1b233fc8feda"), new DateTime(2025, 6, 5, 12, 0, 0, 0, DateTimeKind.Utc), new Guid("aa30317b-e63b-4ac0-bfde-1d97cdb38001"), new Guid("8dd2ed3e-5d0e-435d-b1bd-b74bafbf8bf1") },
                     { new Guid("e39e75d3-ab07-44c0-b123-2f7c549d9f2a"), new DateTime(2025, 6, 5, 12, 2, 0, 0, DateTimeKind.Utc), new Guid("aa30317b-e63b-4ac0-bfde-1d97cdb38001"), new Guid("d66b1448-cbb8-483d-9dc3-9016b3b4c92f") }

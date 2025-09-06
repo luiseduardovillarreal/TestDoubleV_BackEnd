@@ -99,6 +99,12 @@ internal static class Constants
 
                     internal const string GUID_PROFILE_SUP_ADM_CONFIGURATION
                         = "db9a7883-2dee-4f56-a75e-4b59345b64cd";
+
+                    internal const string GUID_PROFILE_USR_DASHBOARD
+                        = "5886b671-948b-46b8-9c8b-8e115021f7e1";
+
+                    internal const string GUID_PROFILE_USR_DEBT
+                        = "5360c6c3-7bf3-436a-b107-87e767638335";                    
                 }
 
                 internal static class SeedDataProfiles_SubModules

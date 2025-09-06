@@ -241,6 +241,20 @@ public partial class MovementDbContext : MovementDbContextBase
                 IdProfile = Guid.Parse(ConstantsConfigureProfiles.GUID_PROFILE_SUP_ADM),
                 IdModule = Guid.Parse(ConstantsConfigureModules.GUID_CONFIGURATION),
                 CreateAt = new DateTime(2025, 09, 05, 12, 00, 00, DateTimeKind.Utc)
+            },
+            new()
+            {
+                Id = Guid.Parse(ConstantsConfigureProfiles_Modules.GUID_PROFILE_USR_DASHBOARD),
+                IdProfile = Guid.Parse(ConstantsConfigureProfiles.GUID_PROFILE_USER),
+                IdModule = Guid.Parse(ConstantsConfigureModules.GUID_DASHBOARD),
+                CreateAt = new DateTime(2025, 09, 04, 12, 00, 00, DateTimeKind.Utc)
+            },
+            new()
+            {
+                Id = Guid.Parse(ConstantsConfigureProfiles_Modules.GUID_PROFILE_USR_DEBT),
+                IdProfile = Guid.Parse(ConstantsConfigureProfiles.GUID_PROFILE_USER),
+                IdModule = Guid.Parse(ConstantsConfigureModules.GUID_DEBT),
+                CreateAt = new DateTime(2025, 09, 05, 12, 00, 00, DateTimeKind.Utc)
             }
         ]);
 
@@ -270,7 +284,7 @@ public partial class MovementDbContext : MovementDbContextBase
             new()
             {
                 Id = Guid.Parse(ConstantsConfigureProfiles_SubModules.GUID_PROFILE_USER_MANAGE_DEBTS),
-                IdProfile = Guid.Parse(ConstantsConfigureProfiles.GUID_PROFILE_SUP_ADM),
+                IdProfile = Guid.Parse(ConstantsConfigureProfiles.GUID_PROFILE_USER),
                 IdSubModule = Guid.Parse(ConstantsConfigureSubModules.GUID_MANAGE_DEBTS),
                 CreateAt = new DateTime(2025, 06, 06, 12, 00, 00, DateTimeKind.Utc)
             }

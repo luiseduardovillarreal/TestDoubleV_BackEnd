@@ -3,8 +3,8 @@ using I_AM.Domain.Contracts;
 using I_AM.Infrastructure.Base;
 using I_AM.Infrastructure.Persistence.Context;
 using I_AM.Infrastructure.Persistence.Contracts;
-using I_AM.Infrastructure.Persistence.GenericQuery;
 using I_AM.WebAPI.Commons;
+using I_AM.WebAPI.ConfigMap;
 using I_AM.WebAPI.Controllers.Login;
 using I_AM.WebAPI.Listener;
 using Microsoft.EntityFrameworkCore;
@@ -26,10 +26,16 @@ builder.Services.AddDbContext<MovementDbContext>(dbContextOptions => dbContextOp
     .UseNpgsql(builder.Configuration.GetConnectionString(defConn)
         ?? builder.Configuration.GetConnectionString($"{connStr}:{defConn}")));
 
+//[LV] Configuración de AutoMapper...
+MapperConfiguration mapperConfiguration = new(config => {
+    config.AddProfile(new AutoMapperConfigurations());
+});
+IMapper mapper = mapperConfiguration.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
 //[LV] Inyectando dependencias...
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IMovementDbContext, MovementDbContext>();
-builder.Services.AddScoped<IExecuteQuery, ExecuteQuery>();
 
 //[LV] Inyectando servicios de escucha...
 builder.Services.AddHostedService<RabbitMQConsumerService>();

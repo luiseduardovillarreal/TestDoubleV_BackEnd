@@ -13,11 +13,10 @@ namespace I_AM.Infrastructure.Base;
 #pragma warning disable CS8625
 #pragma warning disable CS8618
 
-public class UnitOfWork(IMovementDbContext dbContext, IExecuteQuery executeQuery, 
-    IConfiguration configuration) : IUnitOfWork
+public class UnitOfWork(IMovementDbContext dbContext, IConfiguration configuration) 
+    : IUnitOfWork
 {
     private IMovementDbContext _dbContext = dbContext;
-    private readonly IExecuteQuery _executeQuery = executeQuery;
     private readonly IConfiguration _configuration = configuration;
     private ITokenUserRepository<TokenUser> _tokenUserRepository;
     private IUserRepository<User> _userRepository;
@@ -27,7 +26,7 @@ public class UnitOfWork(IMovementDbContext dbContext, IExecuteQuery executeQuery
         ?? (_tokenUserRepository = new TokenUserRepository(_dbContext));
 
     public IUserRepository<User> UserRepository => _userRepository
-        ?? (_userRepository = new UserRepository(_dbContext, _executeQuery, _configuration));
+        ?? (_userRepository = new UserRepository(_dbContext));
 
     public IAuthService AuthService => _authService
         ?? (_authService = new AuthService(_configuration));

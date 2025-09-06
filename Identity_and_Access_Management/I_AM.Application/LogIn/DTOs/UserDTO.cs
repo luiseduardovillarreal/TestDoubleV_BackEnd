@@ -2,12 +2,12 @@
 
 #pragma warning disable CS8618
 
-public class UserResponseDTO
+public class UserDTO 
 {
     public Guid Id { get; set; }
     public string Names { get; set; }
     public string LastNames { get; set; }
     public string Email { get; set; }
-    public ICollection<RolResponseDTO> Rols { get; set; } = new List<RolResponseDTO>();
-    public ICollection<ModuleResponseDTO> Modules { get; set; } = new List<ModuleResponseDTO>();
+    public List<ModuleDTO> Modules { get; set; } = new();
+    public List<SubModuleDTO> SubModules { get; set; } = new();
 }

@@ -1,19 +1,19 @@
-﻿using I_AM.Application.Commons;
+﻿using AutoMapper;
+using I_AM.Application.Commons;
 using I_AM.Application.LogIn.DTOs;
-using I_AM.Application.LogIn.Results;
 using I_AM.Application.Utilities;
 using I_AM.Domain.Contracts;
 using I_AM.Domain.Entities;
 using MediatR;
-using Newtonsoft.Json;
 using System.Net;
 
 namespace I_AM.Application.LogIn.Queries;
 
-internal class LogInQuery(IUnitOfWork unitOfWork) :
+internal class LogInQuery(IUnitOfWork unitOfWork, IMapper mapper) :
     IRequestHandler<LogInRequestDTO, CommonResponse<LogInResponseDTO>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IMapper _mapper = mapper;
     private readonly Security _security = Security.GetInstance();
 
     public async Task<CommonResponse<LogInResponseDTO>> Handle(LogInRequestDTO request, 
@@ -25,60 +25,27 @@ internal class LogInQuery(IUnitOfWork unitOfWork) :
             var emailValid = request.ValidEmil();
             if (emailValid) 
             {
-                User user = await _unitOfWork.UserRepository.FindFirstOrDefaultAsync(
-                    usr => usr.Email.Equals(request.Email));
+                User user = await _unitOfWork.UserRepository.FindAnyByEmailAsync(request.Email);
                 if (user is not null)
                 {
                     if (user.IsActive)
                     {
                         bool isPasswordCorrect = _security.VerifyPassword(request.Password,
                             user.Password);
+
+                        var token = _unitOfWork.AuthService.GetToken(user.Id);
+
+                        var userDTO = _mapper.Map<UserDTO>(user);
+
                         if (isPasswordCorrect)
                         {
-                            string resultQueryUser = await _unitOfWork.UserRepository
-                                .GetUserAccessDetails(user.Id);
-
-                            var resultUserAccessDetai = JsonConvert
-                                .DeserializeObject<DTOQuerie<LogInResponseResult>>(resultQueryUser);
-
-                            if (resultUserAccessDetai is not null && resultUserAccessDetai.State)
-                            {
-                                if (resultUserAccessDetai.Result.Data.Count > 0)
-                                {
-                                    var token = _unitOfWork.AuthService.GetToken(user.Id);
-
-                                    LogInResponseDTO loginResponse = new(resultUserAccessDetai, token);
-                                    loginResponse.ProcessDataGetUserAccessDetails();
-
-                                    _unitOfWork.Dispose();
-                                    return new()
-                                    {
-                                        Data = loginResponse,
-                                        StatusCode = HttpStatusCode.OK,
-                                        Succeeded = true
-                                    };
-                                }
-
-                                _unitOfWork.Dispose();
-                                return new()
-                                {
-                                    Data = new(new(), string.Empty),
-                                    StatusCode = HttpStatusCode.InternalServerError,
-                                    Message = Constants.CommonMessage.LOGIN_FAILED,
-                                    MessageCustom = Constants.LogIn.Queries.LogInQuery.INTERNAL_SERVER_ERROR,
-                                    Succeeded = false
-                                };
-                            }
-
                             _unitOfWork.Dispose();
                             return new()
                             {
-                                Data = new(new(), string.Empty),
-                                StatusCode = HttpStatusCode.InternalServerError,
-                                Message = Constants.CommonMessage.LOGIN_FAILED,
-                                MessageCustom = Constants.LogIn.Queries.LogInQuery.INTERNAL_SERVER_ERROR,
-                                Succeeded = false
-                            };
+                                Data = new(userDTO, token),
+                                StatusCode = HttpStatusCode.OK,
+                                Succeeded = true
+                            };                            
                         }
 
                         _unitOfWork.Dispose();

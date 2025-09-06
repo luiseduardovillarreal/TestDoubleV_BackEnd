@@ -2,8 +2,9 @@
 
 #pragma warning disable CS8618
 
-public class SubModuleResponseDTO
+public class SubModuleDTO 
 {
+    public Guid Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public string RouterLink { get; set; }

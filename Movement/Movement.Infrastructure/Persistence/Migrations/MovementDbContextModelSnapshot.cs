@@ -400,6 +400,20 @@ namespace Movement.Infrastructure.Persistence.Migrations
                             CreateAt = new DateTime(2025, 9, 5, 12, 0, 0, 0, DateTimeKind.Utc),
                             IdModule = new Guid("0f96c167-ebcb-4083-a3e1-60332ca21827"),
                             IdProfile = new Guid("aa30317b-e63b-4ac0-bfde-1d97cdb38001")
+                        },
+                        new
+                        {
+                            Id = new Guid("5886b671-948b-46b8-9c8b-8e115021f7e1"),
+                            CreateAt = new DateTime(2025, 9, 4, 12, 0, 0, 0, DateTimeKind.Utc),
+                            IdModule = new Guid("42690d34-5695-4b04-aa50-7c85ee34f18d"),
+                            IdProfile = new Guid("cd2b4165-a729-4f24-b218-c60f965cab21")
+                        },
+                        new
+                        {
+                            Id = new Guid("5360c6c3-7bf3-436a-b107-87e767638335"),
+                            CreateAt = new DateTime(2025, 9, 5, 12, 0, 0, 0, DateTimeKind.Utc),
+                            IdModule = new Guid("62af661b-7686-42db-ac90-8d3e801aded0"),
+                            IdProfile = new Guid("cd2b4165-a729-4f24-b218-c60f965cab21")
                         });
                 });
 
@@ -464,7 +478,7 @@ namespace Movement.Infrastructure.Persistence.Migrations
                         {
                             Id = new Guid("0b25fea0-a5af-405f-a9ec-73e3609d8630"),
                             CreateAt = new DateTime(2025, 6, 6, 12, 0, 0, 0, DateTimeKind.Utc),
-                            IdProfile = new Guid("aa30317b-e63b-4ac0-bfde-1d97cdb38001"),
+                            IdProfile = new Guid("cd2b4165-a729-4f24-b218-c60f965cab21"),
                             IdSubModule = new Guid("1d53feef-eb1a-4b4e-bd7b-163341b8e2fd")
                         });
                 });
