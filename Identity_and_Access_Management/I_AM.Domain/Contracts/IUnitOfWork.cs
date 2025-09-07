@@ -6,9 +6,10 @@ namespace I_AM.Domain.Contracts;
 
 public interface IUnitOfWork : IDisposable
 {
-    ITokenUserRepository<TokenUser> TokenUserRepository { get; }
-    IUserRepository<User> UserRepository { get; }
     IAuthService AuthService { get; }
+    IProfileRepository<Profile> ProfileRepository { get; }
+    ITokenUserRepository<TokenUser> TokenUserRepository { get; }
+    IUserRepository<User> UserRepository { get; }    
     Task<int> Commit(CancellationToken cancellationToken);
     new void Dispose();
 }

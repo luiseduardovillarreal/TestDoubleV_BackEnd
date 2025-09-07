@@ -7,6 +7,7 @@ using Movement.Infrastructure.Persistence.Contracts;
 using Movement.WebAPI.Commons;
 using Movement.WebAPI.ConfigMap;
 using Movement.WebAPI.Controllers.Deb_t;
+using Movement.WebAPI.Controllers.Pa_y;
 using System.Reflection;
 
 #pragma warning disable CS8600
@@ -97,7 +98,7 @@ app.GetAllDebtsByUserEndPoint();
 app.GetAllDebtsEndPoint();
 app.GetAnyDebtActiveByIdEndPoint();
 app.GetAnyDebtByIdEndPoint();
-app.PayDebtEndPoint();
+app.CreatePayDebtEndPoint();
 app.UpdateDebtEndPoint();
 
 // Configure the HTTP request pipeline.

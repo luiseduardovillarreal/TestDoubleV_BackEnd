@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using I_AM.Application.Commons;
 using I_AM.Application.Use_r.DTOs.CommandCreate;
+using I_AM.Application.Utilities;
 using I_AM.Domain.Contracts;
 using I_AM.Domain.Entities;
 using MediatR;
@@ -13,6 +14,7 @@ internal class CreateUserCommand(IUnitOfWork unitOfWork, IMapper mapper)
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IMapper _mapper = mapper;
+    private readonly Security _security = Security.GetInstance();
 
     public async Task<CommonResponse<string>> Handle(CreateUserRequestDTO request,
         CancellationToken cancellationToken)
@@ -29,6 +31,10 @@ internal class CreateUserCommand(IUnitOfWork unitOfWork, IMapper mapper)
                 if (queryUser is null)
                 {
                     var user = _mapper.Map<User>(request.User);
+                    user.SetPasswordHash(_security.HashPassword(user.Password));
+                    var profile = await _unitOfWork.ProfileRepository.FindFirstOrDefaultAsync(
+                        pro => pro.Code == 2);
+                    user.AddProfile(profile);
 
                     await _unitOfWork.UserRepository.AddAsync(user);
 

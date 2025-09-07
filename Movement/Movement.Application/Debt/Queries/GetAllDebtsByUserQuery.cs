@@ -1,28 +1,34 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Movement.Application.Commons;
+using Movement.Application.Deb_t.DTOs.QueryAllByUser;
 using Movement.Domain.Contracts;
 using System.Net;
-using Movement.Application.Deb_t.DTOs.QueryAllByUser;
 
 namespace Movement.Application.Deb_t.Queries;
 
-internal class GetAllDebtsByUserQuery(IUnitOfWork unitOfWork) : IRequestHandler<
-    GetAllDebtsByUserRequestDTO, CommonResponse<GetAllDebtsByUserResponseDTO>>
+internal class GetAllDebtsByUserQuery(IUnitOfWork unitOfWork, IMapper mapper) 
+    : IRequestHandler<
+        GetAllDebtsByUserRequestDTO, 
+        CommonResponse<GetAllDebtsByUserResponseDTO>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<CommonResponse<GetAllDebtsByUserResponseDTO>> Handle(
         GetAllDebtsByUserRequestDTO request, CancellationToken cancellationToken)
     {
         var debts = await _unitOfWork.DebtRepository.FindAllByUserDebtorAsync(
-            request.IdUserDebtor);
+            request.IdDebtor);
 
         if (debts.Count() > 0)
         {
+            var debtsDTO = _mapper.Map<List<DebtDTO>>(debts);
+
             _unitOfWork.Dispose();
             return new()
             {
-                Data = null,
+                Data = new(debtsDTO),
                 StatusCode = HttpStatusCode.OK,
                 Succeeded = true
             };

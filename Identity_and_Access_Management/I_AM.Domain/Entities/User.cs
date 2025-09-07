@@ -61,6 +61,15 @@ public partial class User
     public virtual void Activate()
         => this.IsActive = true;
 
+    public virtual void AddProfile(Profile profile)
+        => this.Users_Profiles.Add(new()
+            {
+                Profile = profile
+            });
+
+    public virtual void SetPasswordHash(string hashPassword)
+        => this.Password = hashPassword;
+
     public virtual void Inactivate()
         => this.IsActive = false;
 }

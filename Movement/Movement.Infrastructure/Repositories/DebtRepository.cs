@@ -34,9 +34,10 @@ public class DebtRepository(IMovementDbContext dbContext) : IDebtRepository<Debt
 
     public async Task<IEnumerable<Debt>> FindAllByUserDebtorAsync(Guid idUserDebtor)
         => await _dbSet.Include(d => d.UserDebtor)
+            .Include(d => d.UserDebtor)
             .Include(d => d.UserCreditor)
             .Include(d => d.DebtsMovements)
-            .Where(d => d.IdUserDebtor.Equals(idUserDebtor))
+            .Where(d => d.IdUserDebtor.Equals(idUserDebtor) && d.IsActive)
             .ToListAsync();
 
     public async Task<Debt> FindFirstOrDefaultAsync(Expression<Func<Debt, bool>> predicate)

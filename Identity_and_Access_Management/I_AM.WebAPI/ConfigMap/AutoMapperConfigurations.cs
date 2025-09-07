@@ -2,6 +2,7 @@
 using I_AM.Domain.Entities;
 using create_UserDTO = I_AM.Application.Use_r.DTOs.CommandCreate.UserDTO;
 using getAll_UserDTO = I_AM.Application.Use_r.DTOs.QueryAll.UserDTO;
+using getAllForCreditor_UserDTO = I_AM.Application.Use_r.DTOs.QueryAllForCreditor.UserDTO;
 using login_UserDTO = I_AM.Application.LogIn.DTOs.UserDTO;
 
 namespace I_AM.WebAPI.ConfigMap;
@@ -12,6 +13,7 @@ public class AutoMapperConfigurations : AutoMapper.Profile
     {
         CreateMap<create_UserDTO, User>();
         CreateMap<User, getAll_UserDTO>();
+        CreateMap<User, getAllForCreditor_UserDTO>();
         CreateMap<User, login_UserDTO>()
             .ForMember(dest => dest.Modules,
                 opt => opt.MapFrom(src =>

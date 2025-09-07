@@ -32,8 +32,18 @@ internal static class Constants
             internal const string USER_GET_ALL = "/user/get-all";
             internal const string SUMMARY = "Obtiene todos los usuarios.";
             internal const string DESCRIPTION = "Recibe la petición de obtener " +
-                "todos los usuario, realiza sus validaciones correspondientes y " +
+                "todos los usuarios, realiza sus validaciones correspondientes y " +
                 "devuelve los usuarios que existan en base de datos.";
+        }
+
+        internal static class GetAllUsersForCreditorEndPoint
+        {
+            internal const string USER_GET_ALL_FOR_CREDITOR = "/user/get-all-for-creditor";
+            internal const string SUMMARY = "Obtiene los usuarios excepto el de la peticiòn.";
+            internal const string DESCRIPTION = "Recibe la petición de obtener " +
+                "todos los usuarios, excepto el de la petición para listarlos como " +
+                "creditores, realiza sus validaciones correspondientes y devuelve " +
+                "los usuarios.";
         }
 
         internal static class InactivateUserEndPoint

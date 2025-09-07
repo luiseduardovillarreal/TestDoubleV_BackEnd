@@ -10,6 +10,7 @@ using I_AM.WebAPI.Controllers.Use_r;
 using I_AM.WebAPI.Listener;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using static I_AM.WebAPI.Commons.Constants.Controllers;
 
 #pragma warning disable CS8600
 #pragma warning disable CS8604
@@ -89,6 +90,7 @@ app.UseSwaggerUI();
 app.ActivateUserEndPoint();
 app.CreateUserEndPoint();
 app.GetAllUsersEndPoint();
+app.GetAllUsersForCreditorEndPoint();
 app.InactivateUserEndPoint();
 app.LogInEndPoint();
 

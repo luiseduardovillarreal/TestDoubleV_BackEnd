@@ -21,7 +21,7 @@ internal static class Constants
         internal static class DeleteDebtEndPoint
         {
             internal const string DEBT_DELETE = "/debt/delete";
-            internal const string SUMMARY = "Elimina una deuda solicitada.";
+            internal const string SUMMARY = "Elimina (Inactiva) una deuda solicitada.";
             internal const string DESCRIPTION = "Recibe petición de eliminación " +
                 "de una deuda y realiza la correspondiente acción modificando " +
                 "el estado de esta.";
@@ -63,9 +63,9 @@ internal static class Constants
                 "regresa la deuda con sus pagos a la fecha.";
         }
 
-        internal static class PayDebtEndPoint
+        internal static class CreatePayDebtEndPoint
         {
-            internal const string DEBT_PAY = "/debt/pay";
+            internal const string DEBT_PAY = "/pay/create";
             internal const string SUMMARY = "Paga o abona a una deuda.";
             internal const string DESCRIPTION = "Recibe petición de abonar o " +
                 "pagar una deuda y realiza la correspondiente acción.";

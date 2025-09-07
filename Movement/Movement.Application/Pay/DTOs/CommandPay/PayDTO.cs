@@ -1,4 +1,4 @@
-﻿namespace Movement.Application.Deb_t.DTOs.CommandPay;
+﻿namespace Movement.Application.Pa_y.DTOs.CommandPay;
 
 public record PayDTO(Guid IdDebt, double Amount)
 {

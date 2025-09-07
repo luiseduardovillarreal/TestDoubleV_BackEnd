@@ -25,7 +25,7 @@ public partial class User_Profile
 
     [Column(Constants.Entities.CommonProperties.CREATE_AT, Order = 4)]
     [Comment(Constants.Entities.CommonComents.COMMENTS_ON_PROPERTIES_CREATE_AT)]
-    public DateTime CreateAt { get; set; }
+    public DateTime CreateAt { get; set; } = DateTime.UtcNow;
 
     public virtual User User { get; set; } = null!;
 

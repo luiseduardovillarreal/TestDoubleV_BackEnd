@@ -1,16 +1,16 @@
 ﻿using MediatR;
 using Movement.Application.Commons;
-using Movement.Application.Deb_t.DTOs.CommandPay;
+using Movement.Application.Pa_y.DTOs.CommandPay;
 using Movement.WebAPI.Commons;
 
-namespace Movement.WebAPI.Controllers.Deb_t;
+namespace Movement.WebAPI.Controllers.Pa_y;
 
-public static class PayDebtController
+public static class CreatePayDebtController
 {
-    public static void PayDebtEndPoint(this WebApplication app)
+    public static void CreatePayDebtEndPoint(this WebApplication app)
     {
-        app.MapPost(Constants.Controllers.PayDebtEndPoint.DEBT_PAY,
-            async (IMediator mediator, PayDebtRequestDTO request) =>
+        app.MapPost(Constants.Controllers.CreatePayDebtEndPoint.DEBT_PAY,
+            async (IMediator mediator, CreatePayDebtRequestDTO request) =>
             {
                 return await mediator.Send(request)
                     ?? new CommonResponse<string>();
@@ -18,8 +18,8 @@ public static class PayDebtController
         .AddCommonResponse<CommonResponse<string>>()
         .WithOpenApi(static operation => new(operation)
         {
-            Summary = Constants.Controllers.PayDebtEndPoint.SUMMARY,
-            Description = Constants.Controllers.PayDebtEndPoint.DESCRIPTION
+            Summary = Constants.Controllers.CreatePayDebtEndPoint.SUMMARY,
+            Description = Constants.Controllers.CreatePayDebtEndPoint.DESCRIPTION
         });
     }
 

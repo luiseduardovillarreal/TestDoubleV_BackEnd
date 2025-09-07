@@ -22,21 +22,35 @@ internal class DeleteDebtCommand(IUnitOfWork unitOfWork)
         {
             if (debt.IsActive is true)
             {
-                debt.Inactivate();
-
-                _unitOfWork.DebtRepository.Delete(debt);
-
-                var resultCommit = await _unitOfWork.Commit(CancellationToken.None);
-                if (resultCommit > 0)
+                var validateDebt = debt.ValidDifference();
+                if (validateDebt)
                 {
+                    debt.Inactivate();
+
+                    _unitOfWork.DebtRepository.Delete(debt);
+
+                    var resultCommit = await _unitOfWork.Commit(CancellationToken.None);
+                    if (resultCommit > 0)
+                    {
+                        _unitOfWork.Dispose();
+                        return new()
+                        {
+                            Data = string.Empty,
+                            StatusCode = HttpStatusCode.OK,
+                            Message = Constants.Debt.Commands.DELETED,
+                            MessageCustom = string.Empty,
+                            Succeeded = true
+                        };
+                    }
+
                     _unitOfWork.Dispose();
                     return new()
                     {
                         Data = string.Empty,
-                        StatusCode = HttpStatusCode.OK,
-                        Message = Constants.Debt.Commands.DELETED,
-                        MessageCustom = string.Empty,
-                        Succeeded = true
+                        StatusCode = HttpStatusCode.InternalServerError,
+                        Message = Constants.Debt.Commands.NO_DELETED,
+                        MessageCustom = Constants.CommondResponsesCustom.COMMIT_0,
+                        Succeeded = false
                     };
                 }
 
@@ -44,9 +58,9 @@ internal class DeleteDebtCommand(IUnitOfWork unitOfWork)
                 return new()
                 {
                     Data = string.Empty,
-                    StatusCode = HttpStatusCode.InternalServerError,
-                    Message = Constants.Debt.Commands.NO_DELETED,
-                    MessageCustom = Constants.CommondResponsesCustom.COMMIT_0,
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = Constants.Debt.Commands.NO_DELETED_DIFFERENCE,
+                    MessageCustom = Constants.Debt.Commands.NO_DELETED_DIFFERENCE,
                     Succeeded = false
                 };
             }

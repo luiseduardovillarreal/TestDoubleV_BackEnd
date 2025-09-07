@@ -18,19 +18,23 @@ public class UnitOfWork(IMovementDbContext dbContext, IConfiguration configurati
 {
     private IMovementDbContext _dbContext = dbContext;
     private readonly IConfiguration _configuration = configuration;
+    private IAuthService _authService;
+    private IProfileRepository<Profile> _profileRepository;
     private ITokenUserRepository<TokenUser> _tokenUserRepository;
     private IUserRepository<User> _userRepository;
-    private IAuthService _authService;
+    
+    public IAuthService AuthService => _authService
+        ?? (_authService = new AuthService(_configuration));
+
+    public IProfileRepository<Profile> ProfileRepository => _profileRepository
+        ?? (_profileRepository = new ProfileRepository(_dbContext));
 
     public ITokenUserRepository<TokenUser> TokenUserRepository => _tokenUserRepository
         ?? (_tokenUserRepository = new TokenUserRepository(_dbContext));
 
     public IUserRepository<User> UserRepository => _userRepository
         ?? (_userRepository = new UserRepository(_dbContext));
-
-    public IAuthService AuthService => _authService
-        ?? (_authService = new AuthService(_configuration));
-
+    
     public async Task<int> Commit(CancellationToken cancellationToken)
         => await _dbContext.SaveChangesAsync(cancellationToken);
 

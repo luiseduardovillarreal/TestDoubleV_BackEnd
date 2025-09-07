@@ -18,7 +18,21 @@ public class UserRepository(IMovementDbContext dbContext)
         => await _dbSet.AddAsync(entity);
 
     public async Task<IEnumerable<User>> FindAllAsync()
-        => await _dbSet.ToListAsync();
+        => await _dbSet
+            .Include(u => u.Users_Profiles)
+                .ThenInclude(up => up.Profile)
+            .Where(u => !u.Users_Profiles.Any(up => up.Profile.Code == 1))
+            .ToListAsync();
+
+    public async Task<IEnumerable<User>> FindAllForCreditorAsync(Guid IdDebtor)
+        => await _dbSet
+            .Include(u => u.Users_Profiles)
+                .ThenInclude(up => up.Profile)
+            .Where(
+                u => !u.Users_Profiles.Any(up => up.Profile.Code == 1) 
+                 && 
+                !u.Id.Equals(IdDebtor))
+            .ToListAsync();
 
     public async Task<User> FindAnyByEmailAsync(string email)
         => await _dbSet

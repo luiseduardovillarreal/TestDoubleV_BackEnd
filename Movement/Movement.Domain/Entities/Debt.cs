@@ -35,7 +35,7 @@ public partial class Debt
 
     [Column(Constants.Entities.CommonProperties.CREATE_AT, Order = 6)]
     [Comment(Constants.Entities.CommonComents.COMMENTS_ON_PROPERTIES_CREATE_AT)]
-    public DateTime CreateAt { get; set; } = DateTime.Now;
+    public DateTime CreateAt { get; set; } = DateTime.UtcNow;
 
     [Column(Constants.Entities.CommonProperties.UPDATE_AT, Order = 7)]
     [Comment(Constants.Entities.CommonComents.COMMENTS_ON_PROPERTIES_UPDATE_AT)]
@@ -52,11 +52,18 @@ public partial class Debt
     public virtual ICollection<DebtMovement> DebtsMovements { get; } 
         = new List<DebtMovement>();
 
+    public virtual void AddPay(double newPay)
+    {
+        this.UpdateAt = DateTime.UtcNow;
+        this.Difference -= newPay;
+        DebtsMovements.Add(new()
+        {
+            Amount = newPay
+        });
+    }
+
     public virtual void Inactivate()
         => this.IsActive = false;
-
-    public virtual bool ValidateNewAmountAboutDifference(double newAmount)
-        => this.Difference >= newAmount;
 
     public virtual void ProcessNewAmountAndAdjustDifference(double newAmount)
     {
@@ -64,12 +71,12 @@ public partial class Debt
         this.Difference -= newAmount;
     }
 
-    public virtual void AddPay(double newPay)
-    {
-        this.UpdateAt = DateTime.Now;
-        DebtsMovements.Add(new()
-        {
-            Amount = newPay
-        });
-    }
+    public virtual bool ValidateNewAmountAboutDifference(double newAmount)
+        => this.Difference >= newAmount;
+
+    public virtual bool ValidPayFromDifference(double pay)
+        => this.Difference >= pay;
+
+    public virtual bool ValidDifference()
+        => !(this.Difference > 0);
 }

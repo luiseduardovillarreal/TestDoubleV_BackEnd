@@ -10,9 +10,9 @@ public static class GetAllDebtsByUserController
     public static void GetAllDebtsByUserEndPoint(this WebApplication app)
     {
         app.MapGet(Constants.Controllers.GetAllDebtsByUserEndPoint.DEBT_GET_ALL,
-            async (IMediator mediator, Guid IdUser) =>
+            async (IMediator mediator, Guid IdDebtor) =>
             {
-                return await mediator.Send(new GetAllDebtsByUserRequestDTO(IdUser))
+                return await mediator.Send(new GetAllDebtsByUserRequestDTO(IdDebtor))
                     ?? new CommonResponse<GetAllDebtsByUserResponseDTO>();
             })
         .AddCommonResponse<CommonResponse<GetAllDebtsByUserResponseDTO>>()
