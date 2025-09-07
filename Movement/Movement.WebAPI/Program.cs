@@ -93,13 +93,13 @@ app.UseRouting();
 
 //[LV] Configuración de los recursos del API (Minimals)
 app.CreateDebtEndPoint();
-app.DeleteDebtEndPoint();
+app.ActivateDebtEndPoint();
 app.GetAllDebtsByUserEndPoint();
 app.GetAllDebtsEndPoint();
 app.GetAnyDebtActiveByIdEndPoint();
 app.GetAnyDebtByIdEndPoint();
 app.CreatePayDebtEndPoint();
-app.UpdateDebtEndPoint();
+app.DeleteDebtEndPoint();
 
 // Configure the HTTP request pipeline.
 app.MapControllers();

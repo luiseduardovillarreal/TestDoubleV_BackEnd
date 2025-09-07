@@ -9,6 +9,15 @@ internal static class Constants
 
     internal static class Controllers
     {
+        internal static class ActivateDebtEndPoint
+        {
+            internal const string DEBT_ACTIVATE = "/debt/activate";
+            internal const string SUMMARY = "Activa una deuda solicitada.";
+            internal const string DESCRIPTION = "Recibe petición de activación " +
+                "de una deuda eliminada y realiza la correspondiente acción " +
+                "modificando el estado de esta.";
+        }
+
         internal static class CreateDebtEndPoint
         {
             internal const string DEBT_CREATE = "/debt/create";

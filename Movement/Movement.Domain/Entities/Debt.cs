@@ -52,6 +52,9 @@ public partial class Debt
     public virtual ICollection<DebtMovement> DebtsMovements { get; } 
         = new List<DebtMovement>();
 
+    public virtual void Activate()
+        => this.IsActive = true;
+
     public virtual void AddPay(double newPay)
     {
         this.UpdateAt = DateTime.UtcNow;

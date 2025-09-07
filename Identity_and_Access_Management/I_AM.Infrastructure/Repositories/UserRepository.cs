@@ -31,7 +31,9 @@ public class UserRepository(IMovementDbContext dbContext)
             .Where(
                 u => !u.Users_Profiles.Any(up => up.Profile.Code == 1) 
                  && 
-                !u.Id.Equals(IdDebtor))
+                !u.Id.Equals(IdDebtor)
+                 &&
+                u.IsActive)
             .ToListAsync();
 
     public async Task<User> FindAnyByEmailAsync(string email)

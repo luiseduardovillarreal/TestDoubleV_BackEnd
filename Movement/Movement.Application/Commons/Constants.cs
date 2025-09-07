@@ -29,7 +29,10 @@ internal class Constants
             internal const string CREDITOR_NOT_EXIST = "El usuario creditor no " +
                 "existe en la base de datos.";
             internal const string DELETED = "Deuda eliminada de manera exitosa.";
+            internal const string ACTIVATED = "Deuda reactivada de manera exitosa.";
             internal const string NO_DELETED = "No se pudo eliminar la deuda, " +
+                "verifique con el administrador del sistema.";
+            internal const string NO_ACTIVATED = "No se pudo activar la deuda, " +
                 "verifique con el administrador del sistema.";
             internal const string NO_DELETED_DIFFERENCE = "No se pudo eliminar " +
                 "la deuda, primero debe cancelarla en su totalidad.";
@@ -37,6 +40,7 @@ internal class Constants
             internal const string NO_UPDATED = "No se pudo modificar la deuda, " +
                 "verifique con el administrador del sistema.";
             internal const string DEBT_INACTIVE = "La deuda ya se encuentra eliminada.";
+            internal const string DEBT_ACTIVE = "La deuda se encuentra activa.";
         }
 
         internal static class Queries

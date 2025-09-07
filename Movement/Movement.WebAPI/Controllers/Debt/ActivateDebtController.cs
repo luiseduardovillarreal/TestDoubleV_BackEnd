@@ -1,16 +1,16 @@
 ﻿using MediatR;
 using Movement.Application.Commons;
-using Movement.Application.Deb_t.DTOs.CommandUpdate;
+using Movement.Application.Deb_t.DTOs.CommandActivate;
 using Movement.WebAPI.Commons;
 
 namespace Movement.WebAPI.Controllers.Deb_t;
 
-public static class UpdateDebtController
+public static class ActivateDebtController
 {
-    public static void UpdateDebtEndPoint(this WebApplication app)
+    public static void ActivateDebtEndPoint(this WebApplication app)
     {
-        app.MapPut(Constants.Controllers.UpdateDebtEndPoint.DEBT_UPDATE,
-            async (IMediator mediator, UpdateDebtRequestDTO request) =>
+        app.MapPut(Constants.Controllers.ActivateDebtEndPoint.DEBT_ACTIVATE,
+            async (IMediator mediator, ActivateDebtRequestDTO request) =>
             {
                 return await mediator.Send(request)
                     ?? new CommonResponse<string>();
@@ -18,8 +18,8 @@ public static class UpdateDebtController
         .AddCommonResponse<CommonResponse<string>>()
         .WithOpenApi(static operation => new(operation)
         {
-            Summary = Constants.Controllers.UpdateDebtEndPoint.SUMMARY,
-            Description = Constants.Controllers.UpdateDebtEndPoint.DESCRIPTION
+            Summary = Constants.Controllers.ActivateDebtEndPoint.SUMMARY,
+            Description = Constants.Controllers.ActivateDebtEndPoint.DESCRIPTION
         });
     }
 
