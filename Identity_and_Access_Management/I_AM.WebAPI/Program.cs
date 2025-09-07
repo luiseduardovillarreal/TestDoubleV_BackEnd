@@ -7,10 +7,8 @@ using I_AM.WebAPI.Commons;
 using I_AM.WebAPI.ConfigMap;
 using I_AM.WebAPI.Controllers.Login;
 using I_AM.WebAPI.Controllers.Use_r;
-using I_AM.WebAPI.Listener;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using static I_AM.WebAPI.Commons.Constants.Controllers;
 
 #pragma warning disable CS8600
 #pragma warning disable CS8604
@@ -38,9 +36,6 @@ builder.Services.AddSingleton(mapper);
 //[LV] Inyectando dependencias...
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IMovementDbContext, MovementDbContext>();
-
-//[LV] Inyectando servicios de escucha...
-builder.Services.AddHostedService<RabbitMQConsumerService>();
 
 //[LV] Configuración de autorización de acceso CORS...
 string ipAuthorize = builder.Configuration.GetSection(Constants.Program.IP_AUTHORIZED).Value;

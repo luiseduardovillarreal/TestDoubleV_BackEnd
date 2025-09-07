@@ -66,18 +66,6 @@ internal static class Constants
         }
     }
 
-    internal static class Listener
-    {
-        internal class RabbitMQConsumerService
-        {
-            internal const string SERVER_RABBIT_MQ = "ServiceBus:ServerRabbitMQ";
-            internal const string PORT_RABBIT_MQ = "ServiceBus:PortRabbitMQ";            
-            internal const string USER = "ServiceBus:User";
-            internal const string PASSWORD = "ServiceBus:Password";
-            internal const string QUEUE_TOKEN_USER = "ServiceBus:QueueTokenUser";
-        }
-    }
-
     internal static class Program
     {
         internal const string I_AM_APPLICATION = "I_AM.Application";
